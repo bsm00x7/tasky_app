@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tasky/features/home/constant/constant.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/service/preferences.dart';
 
@@ -27,7 +28,7 @@ class _TodoscreenState extends State<Todoscreen> {
     setState(() {
       tasksIsNotDone.removeWhere((task) => task.id == id);
     });
-    await PreferenceManager().setString("tasks",jsonEncode( tasksIsNotDone.map((toElement)=>toElement.toJson()).toList()));
+    await PreferenceManager().setString(StorgeKey.tasks,jsonEncode( tasksIsNotDone.map((toElement)=>toElement.toJson()).toList()));
   }
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class _TodoscreenState extends State<Todoscreen> {
               });
 
 
-              final allTaskDate = PreferenceManager().getString('tasks');
+              final allTaskDate = PreferenceManager().getString(StorgeKey.tasks);
               if (allTaskDate != null) {
                 final List<TaskModel> allDatelis =
                 (jsonDecode(allTaskDate) as List)
@@ -54,7 +55,7 @@ class _TodoscreenState extends State<Todoscreen> {
                       (e) => e.id == tasksIsNotDone[index].id,
                 );
                 allDatelis[newIndex] = tasksIsNotDone[index];
-                PreferenceManager().setString("tasks", jsonEncode(allDatelis));
+                PreferenceManager().setString(StorgeKey.tasks, jsonEncode(allDatelis));
                 _loadTaskDate();
               }
 
@@ -66,7 +67,7 @@ class _TodoscreenState extends State<Todoscreen> {
   }
   void _loadTaskDate() async {
 
-    final finalist = PreferenceManager().getString("tasks");
+    final finalist = PreferenceManager().getString(StorgeKey.tasks);
 
     if (finalist != null) {
       final taskAfterDecCode = jsonDecode(finalist) as List<dynamic>;

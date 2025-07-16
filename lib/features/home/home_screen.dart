@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                                                     value: value.taskHighPriority[index]
                                                         .isDone,
                                                     onChanged: (value)  {
-                                                      controller.ChangeStateCheckBoxHigthPriorty(index , value);
+                                                      controller.changeStateCheckBoxHigthPriorty(index , value);
                                                     },
                                                   ),
                                                   Expanded(

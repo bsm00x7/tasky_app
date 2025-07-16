@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:tasky/features/home/constant/constant.dart';
 import 'package:tasky/features/profile/userDetails.dart';
 import 'package:tasky/features/welcom/welcom_page.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
@@ -26,9 +27,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
   void _loaddetails() async {
     setState(() {
-      userName = PreferenceManager().getString("username");
-      motivation = PreferenceManager().getString("motivation");
-      _selectedImage = PreferenceManager().getString('user_image');
+      userName = PreferenceManager().getString(StorgeKey.user_image);
+      motivation = PreferenceManager().getString(StorgeKey.motivation);
+      _selectedImage = PreferenceManager().getString(StorgeKey.user_image);
     });
   }
 
@@ -152,8 +153,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                     ListTile(
                       onTap: () async {
-                        await PreferenceManager().remove("username");
-                        await PreferenceManager().remove("motivation");
+                        await PreferenceManager().remove(StorgeKey.username);
+                        await PreferenceManager().remove(StorgeKey.motivation);
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -239,7 +240,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
     String fileName = path.basename(file.path);
     final dirFile =await File(file.path).copy('${appDocumentsDir.path}/${fileName}');
-    await PreferenceManager().setString("user_image",dirFile.path );
+    await PreferenceManager().setString(StorgeKey.user_image,dirFile.path );
   }
 
 

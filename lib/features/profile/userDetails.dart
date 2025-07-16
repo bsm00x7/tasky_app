@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/features/home/constant/constant.dart';
 import 'package:tasky/service/preferences.dart';
 
 import '../../core/colors/styles.dart';
@@ -66,13 +67,13 @@ class Userdetails extends StatelessWidget {
                   onPressed: () async {
                     if (_key.currentState?.validate() ?? false) {
                       await PreferenceManager().setString(
-                        "username",
+                        StorgeKey.username,
                         inputText.value.text,
                       );
                     }
                     if (inputQuote.value.text.trim().isNotEmpty) {
                       PreferenceManager().setString(
-                        "motivation",
+                       StorgeKey.motivation,
                         inputQuote.value.text,
                       );
                       Navigator.pop(context);

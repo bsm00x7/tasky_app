@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky/features/home/constant/constant.dart';
 
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/service/preferences.dart';
@@ -26,7 +27,7 @@ class _AlltaskhighpriorityState extends State<Alltaskhighpriority> {
       taskHighPriority.removeWhere((taskHighPriority) => taskHighPriority.id == id);
 
     });
-    await PreferenceManager().setString("tasks",jsonEncode( taskHighPriority.map((toElement)=>toElement.toJson()).toList()));
+    await PreferenceManager().setString(StorgeKey.tasks,jsonEncode( taskHighPriority.map((toElement)=>toElement.toJson()).toList()));
 
 
   }
@@ -38,7 +39,7 @@ class _AlltaskhighpriorityState extends State<Alltaskhighpriority> {
 
   void LoadTaskHight() async {
 
-    final taskString = PreferenceManager().getString("tasks");
+    final taskString = PreferenceManager().getString(StorgeKey.tasks);
     if (taskString != null) {
       final alldatafterdecoding = jsonDecode(taskString) as List;
       final taskMap = alldatafterdecoding.map((ele) {
@@ -90,7 +91,7 @@ class _AlltaskhighpriorityState extends State<Alltaskhighpriority> {
                       });
 
 
-                      await PreferenceManager().setString("tasks", jsonEncode(task));
+                      await PreferenceManager().setString(StorgeKey.tasks, jsonEncode(task));
 
 
                     },

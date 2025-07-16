@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
+import 'package:tasky/features/home/constant/constant.dart';
 
 import '../../../models/task_model.dart';
 import '../../../service/preferences.dart';
@@ -33,13 +34,13 @@ class HomeController with ChangeNotifier{
 
   void loadUserName() async {
 
-      username = PreferenceManager().getString("username");
-      user_image  = PreferenceManager().getString("user_image");
+      username = PreferenceManager().getString(StorgeKey.username);
+      user_image  = PreferenceManager().getString(StorgeKey.user_image);
     notifyListeners();
   }
 
   void loadTaskData() async {
-    final data = PreferenceManager().getString("tasks");
+    final data = PreferenceManager().getString(StorgeKey.tasks);
     if (data != null) {
       final decoded = jsonDecode(data) as List<dynamic>;
       final tasks = decoded.map((e) => TaskModel.fromJson(e)).toList();
@@ -61,7 +62,7 @@ class HomeController with ChangeNotifier{
 
       task.removeWhere((task) => task.id == id);
       calculateLogicTasks();
-    await PreferenceManager().setString("tasks",jsonEncode( task.map((toElement)=>toElement.toJson()).toList()));
+    await PreferenceManager().setString(StorgeKey.tasks,jsonEncode( task.map((toElement)=>toElement.toJson()).toList()));
       notifyListeners();
 
 
@@ -73,7 +74,7 @@ class HomeController with ChangeNotifier{
     notifyListeners();
   }
 
-  void ChangeStateCheckBoxHigthPriorty(int index , bool? value){
+  void changeStateCheckBoxHigthPriorty(int index , bool? value){
 
       taskHighPriority[index]
           .isDone =
@@ -94,7 +95,7 @@ class HomeController with ChangeNotifier{
         .map((e) => e.toJson())
         .toList();
     PreferenceManager().setString(
-      "tasks",
+      StorgeKey.tasks,
       jsonEncode(updatedTask),
     );
       notifyListeners();
@@ -106,7 +107,7 @@ class HomeController with ChangeNotifier{
 
     final updatedTask = task.map((e) => e.toJson()).toList();
     PreferenceManager().setString(
-      "tasks",
+      StorgeKey.tasks,
       jsonEncode(updatedTask),
     );
       notifyListeners();
