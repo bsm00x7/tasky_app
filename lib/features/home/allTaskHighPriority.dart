@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/service/preferences.dart';
 
-import '../core/colors/styles.dart';
-import '../core/enums/taskOptionEnums.dart';
-import '../core/theme/theme_controller.dart';
+import '../../core/colors/styles.dart';
+import '../../core/enums/taskOptionEnums.dart';
+import '../../core/theme/theme_controller.dart';
 
 class Alltaskhighpriority extends StatefulWidget {
 

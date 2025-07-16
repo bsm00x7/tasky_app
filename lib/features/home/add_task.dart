@@ -4,9 +4,9 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 
 
-import '../core/colors/styles.dart';
-import '../models/task_model.dart';
-import '../service/preferences.dart';
+import '../../core/colors/styles.dart';
+import '../../models/task_model.dart';
+import '../../service/preferences.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});

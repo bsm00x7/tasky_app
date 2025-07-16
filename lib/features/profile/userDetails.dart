@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/service/preferences.dart';
 
-import '../core/colors/styles.dart';
-import '../core/theme/theme_controller.dart';
-import '../widgets/Text_Fild.dart';
+import '../../core/colors/styles.dart';
+import '../../core/theme/theme_controller.dart';
+import '../../widgets/Text_Fild.dart';
 
 class Userdetails extends StatelessWidget {
   Userdetails({super.key});

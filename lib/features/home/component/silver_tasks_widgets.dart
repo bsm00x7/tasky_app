@@ -6,7 +6,7 @@ import 'package:tasky/core/theme/theme_controller.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/service/preferences.dart';
 
-import '../core/enums/taskOptionEnums.dart';
+import '../../../core/enums/taskOptionEnums.dart';
 
 class SilverTasksWidgets extends StatelessWidget {
   final List<TaskModel> task;

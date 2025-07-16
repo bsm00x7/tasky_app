@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tasky/Page/switch_screens.dart';
 
-import '../core/colors/styles.dart';
-import '../widgets/Text_Fild.dart';
+import '../../core/colors/styles.dart';
+import '../../widgets/Text_Fild.dart';
 
 class WelcomHome extends StatelessWidget {
   WelcomHome({super.key});

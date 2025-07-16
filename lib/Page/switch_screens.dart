@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasky/Page/profile_screen.dart';
-import 'package:tasky/Page/todoscreen.dart';
+import 'package:tasky/features/profile/profile_screen.dart';
+import 'package:tasky/features/todo/todoscreen.dart';
 
 import '../core/colors/styles.dart';
-import 'completed_screen.dart';
-import 'home_screen.dart';
+import '../features/completed/completed_screen.dart';
+import '../features/home/home_screen.dart';
 
 class SiwtchScreen extends StatefulWidget {
   const SiwtchScreen({super.key});
@@ -17,6 +17,7 @@ class SiwtchScreen extends StatefulWidget {
 class _SiwtchScreenState extends State<SiwtchScreen> {
   int _currentIndex = 0;
   final List<dynamic> _page = [
+
     HomeScreen(),
     Todoscreen(),
     CompletedScreen(),

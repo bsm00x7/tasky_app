@@ -4,12 +4,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasky/Page/add_task.dart';
+import 'package:tasky/features/home/add_task.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/service/preferences.dart';
 
-import '../widgets/achieved_Tasks_widgets.dart';
-import '../widgets/silver_tasks_widgets.dart';
+import 'component/achieved_Tasks_widgets.dart';
+import 'component/silver_tasks_widgets.dart';
 import 'allTaskHighPriority.dart';
 
 class HomeScreen extends StatefulWidget {

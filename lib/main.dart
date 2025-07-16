@@ -3,7 +3,7 @@ import 'package:tasky/core/theme/ligthMode.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
 import 'package:tasky/service/preferences.dart';
 import 'Page/switch_screens.dart';
-import 'Page/welcom_page.dart';
+import 'features/welcom/welcom_page.dart';
 import 'core/theme/darkTheme.dart';
 
 // value Notifier
