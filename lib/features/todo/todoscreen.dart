@@ -14,10 +14,10 @@ class Todoscreen extends StatefulWidget {
 
 
   @override
-  State<Todoscreen> createState() => _TodoscreenState();
+  State<Todoscreen> createState() => TodoscreenState();
 }
 
-class _TodoscreenState extends State<Todoscreen> {
+class TodoscreenState extends State<Todoscreen> {
   @override
   void initState() {
     _loadTaskDate();
