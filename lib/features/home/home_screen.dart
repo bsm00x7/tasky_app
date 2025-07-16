@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         // App bar
                         Row(
+
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             value.user_image != null
