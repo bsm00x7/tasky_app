@@ -81,11 +81,10 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 16),
 
                         // Achieved Tasks
-                        AchievedTasksWidgets(
-                          totalTask: value.totalTask,
-                          totalTaskDone: value.totalTaskDone,
-                          percentTask: value.percentTask,
-                        ),
+
+                        // fixed Archived Task Widgets with add consumer in ArchivedTaskWidgets.dart and convert StateFullWidget for StateLessWidgets
+                        // And Deleter all send Parameter and hold data in HomeController
+                        AchievedTasksWidgets(),
 
                         const SizedBox(height: 8),
 
