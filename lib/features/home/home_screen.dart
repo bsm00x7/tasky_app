@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/features/home/add_task.dart';
+import 'package:tasky/features/addTask/add_task.dart';
 
 import 'allTaskHighPriority.dart';
 import 'component/achieved_Tasks_widgets.dart';

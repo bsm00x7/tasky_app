@@ -19,11 +19,9 @@ class TasksWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-
       itemCount: task.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-
           height: 56,
           width: double.infinity,
           alignment: Alignment.center,
@@ -32,7 +30,6 @@ class TasksWidgets extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
-
             children: [
               SizedBox(width: 4),
               Checkbox(

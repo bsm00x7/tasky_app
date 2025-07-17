@@ -19,7 +19,7 @@ class _SiwtchScreenState extends State<SiwtchScreen> {
   final List<dynamic> _page = [
 
     HomeScreen(),
-    Todoscreen(),
+    todoscreen(),
     CompletedScreen(),
     ProfileScreen(),
   ];
