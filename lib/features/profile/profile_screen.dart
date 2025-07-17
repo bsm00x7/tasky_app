@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
   void _loaddetails() async {
     setState(() {
-      userName = PreferenceManager().getString(StorgeKey.user_image);
+      userName = PreferenceManager().getString(StorgeKey.username);
       motivation = PreferenceManager().getString(StorgeKey.motivation);
       _selectedImage = PreferenceManager().getString(StorgeKey.user_image);
     });

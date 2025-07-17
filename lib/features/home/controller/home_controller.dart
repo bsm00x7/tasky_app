@@ -14,31 +14,28 @@ class HomeController with ChangeNotifier{
   int totalTask = 0;
   double percentTask = 0;
   List<TaskModel> taskHighPriority = [];
+  bool isChechked = false;
   String? user_image;
+  String? motivation ;
   void init() {
-    loadUserName();
+    loadUserData();
     loadTaskData();
+  }
+  void initHightTask() {
+    LoadTaskHight();
+  }
+  HomeController.Hight(){
+    initHightTask();
   }
   HomeController(){
     init();
   }
-
-
-
-
-
-
-
-
-
-
-  void loadUserName() async {
-
+  void loadUserData() async {
       username = PreferenceManager().getString(StorgeKey.username);
       user_image  = PreferenceManager().getString(StorgeKey.user_image);
+      motivation = PreferenceManager().getString(StorgeKey.motivation);
     notifyListeners();
   }
-
   void loadTaskData() async {
     final data = PreferenceManager().getString(StorgeKey.tasks);
     if (data != null) {
@@ -74,7 +71,7 @@ class HomeController with ChangeNotifier{
     notifyListeners();
   }
 
-  void changeStateCheckBoxHigthPriorty(int index , bool? value){
+  void changeStateCheckBoxHigthPriorty({ required int index , required bool? value}){
 
       taskHighPriority[index]
           .isDone =
@@ -100,7 +97,7 @@ class HomeController with ChangeNotifier{
     );
       notifyListeners();
   }
-  void ChangeStateCheckBox( { required int index , required bool? value}){
+  void changeStateCheckBox( { required int index , required bool? value}){
 
       task[index].isDone = value ?? false;
       calculateLogicTasks();
@@ -112,5 +109,17 @@ class HomeController with ChangeNotifier{
     );
       notifyListeners();
   }
+  void LoadTaskHight() async {
 
+    final taskString = PreferenceManager().getString(StorgeKey.tasks);
+    if (taskString != null) {
+      final alldatafterdecoding = jsonDecode(taskString) as List;
+      final taskMap = alldatafterdecoding.map((ele) {
+        return TaskModel.fromJson(ele);
+      }).toList();
+
+        task = taskMap;
+        taskHighPriority = taskMap.where((ele) => ele.taskPriority).toList();
+    }
+  }
 }

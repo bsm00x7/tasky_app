@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'dart:math';
 
@@ -6,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/features/home/add_task.dart';
+
+import 'allTaskHighPriority.dart';
 import 'component/achieved_Tasks_widgets.dart';
 import 'component/silver_tasks_widgets.dart';
-import 'allTaskHighPriority.dart';
 import 'controller/home_controller.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) {
-         return HomeController();
+        return HomeController();
       },
       child: Consumer<HomeController>(
         builder: (BuildContext context, HomeController value, Widget? child) {
@@ -33,26 +34,58 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         // App bar
                         Row(
-
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             value.user_image != null
-                                ? CircleAvatar(backgroundImage: FileImage(File(value.user_image!)))
-                                : CircleAvatar(child: SvgPicture.asset("assets/images/Leading element.svg", width: 30, height: 30)),
+                                ? CircleAvatar(
+                                    backgroundImage: FileImage(
+                                      File(value.user_image!),
+                                    ),
+                                  )
+                                : CircleAvatar(
+                                    child: SvgPicture.asset(
+                                      "assets/images/Leading element.svg",
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                  ),
 
                             const SizedBox(width: 8),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Good Evening, ${value.username}",
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.displayMedium!.copyWith(fontSize: 16),
+                                Selector<HomeController, String?>(
+                                  selector:
+                                      (BuildContext, HomeController username) =>
+                                          username.username,
+                                  builder:
+                                      (
+                                        BuildContext context,
+                                        String? username,
+                                        Widget? child,
+                                      ) => Text(
+                                        "Good Evening, $username",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayMedium!
+                                            .copyWith(fontSize: 16),
+                                      ),
                                 ),
-                                Text(
-                                  "One task at a time. One step \ncloser.",
-                                  style: Theme.of(context).textTheme.titleSmall,
+                                Selector<HomeController, String?>(
+                                  selector: (BuildContext, Controller) =>
+                                      Controller.motivation,
+                                  builder:
+                                      (
+                                        BuildContext context,
+                                        String? motivation,
+                                        Widget? child,
+                                      ) => Text(
+                                        motivation ??
+                                            "One task at a time. One step \ncloser.",
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.titleSmall,
+                                      ),
                                 ),
                               ],
                             ),
@@ -96,7 +129,9 @@ class HomeScreen extends StatelessWidget {
                               height: 176,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primaryContainer,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.primaryContainer,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Padding(
@@ -116,48 +151,66 @@ class HomeScreen extends StatelessWidget {
                                     if (value.taskHighPriority.isNotEmpty)
                                       Expanded(
                                         child: ListView.builder(
-                                          itemCount: min(4, value.taskHighPriority.length),
+                                          itemCount: min(
+                                            4,
+                                            value.taskHighPriority.length,
+                                          ),
                                           itemBuilder: (BuildContext context, int index) {
                                             return SizedBox(
                                               height: 32,
                                               child: Row(
                                                 children: [
                                                   Checkbox(
-                                                    activeColor: Color(0xFF15B86C),
+                                                    activeColor: Color(
+                                                      0xFF15B86C,
+                                                    ),
                                                     shape: RoundedRectangleBorder(
                                                       borderRadius:
-                                                      BorderRadius.circular(4),
+                                                          BorderRadius.circular(
+                                                            4,
+                                                          ),
                                                     ),
-                                                    value: value.taskHighPriority[index]
+                                                    value: value
+                                                        .taskHighPriority[index]
                                                         .isDone,
-                                                    onChanged: (value)  {
-                                                      controller.changeStateCheckBoxHigthPriorty(index , value);
+                                                    onChanged: (value) {
+                                                      controller
+                                                          .changeStateCheckBoxHigthPriorty(
+                                                            index: index,
+                                                            value: value,
+                                                          );
                                                     },
                                                   ),
                                                   Expanded(
                                                     child: Text(
-                                                      value.taskHighPriority[index]
+                                                      value
+                                                          .taskHighPriority[index]
                                                           .taskName,
                                                       maxLines: 1,
-                                                      overflow: TextOverflow.ellipsis,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       style: TextStyle(
                                                         color:
-                                                        value.taskHighPriority[index]
-                                                            .isDone
-                                                            ? Theme.of(
-                                                          context,
-                                                        ).colorScheme.secondary
-                                                            : Theme.of(
-                                                          context,
-                                                        ).colorScheme.primary,
+                                                            value
+                                                                .taskHighPriority[index]
+                                                                .isDone
+                                                            ? Theme.of(context)
+                                                                  .colorScheme
+                                                                  .secondary
+                                                            : Theme.of(context)
+                                                                  .colorScheme
+                                                                  .primary,
                                                         fontSize: 16,
-                                                        fontWeight: FontWeight.w600,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         decoration:
-                                                        value.taskHighPriority[index]
-                                                            .isDone
+                                                            value
+                                                                .taskHighPriority[index]
+                                                                .isDone
                                                             ? TextDecoration
-                                                            .lineThrough
-                                                            : TextDecoration.none,
+                                                                  .lineThrough
+                                                            : TextDecoration
+                                                                  .none,
                                                       ),
                                                     ),
                                                   ),
@@ -172,7 +225,10 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 40, right: 15),
+                              padding: const EdgeInsets.only(
+                                bottom: 40,
+                                right: 15,
+                              ),
                               child: GestureDetector(
                                 onTap: () async {
                                   await Navigator.push(
@@ -221,14 +277,16 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: 80),
                     sliver: SilverTasksWidgets(
                       task: value.task,
-                      onTap: (bool? value, int index)  {
-                        controller.ChangeStateCheckBox( index: index , value: value);
+                      onTap: (bool? value, int index) {
+                        controller.changeStateCheckBox(
+                          index: index,
+                          value: value,
+                        );
                       },
-                      onDeleter: (String? id)  {
+                      onDeleter: (String? id) {
                         controller.onDeleter(id);
-
-
-                      }, onEdit: ()=> controller.loadTaskData(),
+                      },
+                      onEdit: () => controller.loadTaskData(),
                     ),
                   ),
 
@@ -254,7 +312,6 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         },
-
       ),
     );
   }

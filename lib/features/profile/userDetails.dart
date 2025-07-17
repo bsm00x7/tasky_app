@@ -55,8 +55,9 @@ class Userdetails extends StatelessWidget {
               TextFormField(
                 controller: inputQuote,
                 maxLines: 6,
-                style: TextStyle(color: Colors.white),
+                style: Theme.of(context).textTheme.labelMedium,
                 decoration: InputDecoration(
+
                   hintText: "One task at a time. One step closer.",
                 ),
               ),
