@@ -104,7 +104,7 @@ class AddTask extends StatelessWidget {
                         fixedSize: Size(MediaQuery.of(context).size.width, 40),
                       ),
                       label: Text("Add  task"),
-                      icon: Icon(Icons.add),
+                       icon: Icon(Icons.add),
                     ),
                   ),
                 ],
